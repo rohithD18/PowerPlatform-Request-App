@@ -1,0 +1,22 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |
+        =ClearCollect(DashboardsData, {ID:1,Name:"OVERVIEW REQUESTS"},{ID:2,Name:"CREATE A NEW REQUEST"},{ID:3,Name:"REQUEST DESCRIPTION"},{ID:4,Name:"MANAGE REQUEST"});
+        Set(mechanicalPopup,false);
+        Set(enableViewMore,false);
+        Set(enableRequestContainer,false);
+        Set(isApprove,false);
+        ClearCollect(varRequestData,
+        {ID:1,Title:"Register"},
+        {ID:2,Title:"Transmission"},
+        {ID:3,Title:"Measuring Elements"},
+        {ID:4,Title:"Tear Down"},
+        {ID:5,Title:"Others"});
+        ClearCollect(DashBoardData2, {ID:1,Name:"OVERVIEW REQUESTS"},{ID:2,Name:"CREATE A NEW REQUEST"},{ID:3,Name:"REQUEST DESCRIPTION"});
+        ClearCollect(colStatusDropdown,["Not Started","In Progress","Done"]);
+        //Set(varUser,User());
+        //ClearCollect(ManagerEMails, OnStart.Run("",""));
+        Set(varUserEmail, User().Email);
+        Set(varIsTopLevelManager,!IsBlank( AzureAD.CheckMemberGroupsV2(varUserEmail,["cc31898e-736e-43f7-8a45-4d283ed94fbe"])));
+    StartScreen: =
+

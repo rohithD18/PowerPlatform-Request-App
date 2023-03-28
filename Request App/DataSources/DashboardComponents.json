@@ -1,0 +1,96 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "crd6b_dashboardcomponents",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "crd6b_dashboardcomponent",
+    "MaxGetRowsCount": 500,
+    "Name": "DashboardComponents",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Owner",
+      "crd6b_dashboardcomponent_AsyncOperations": "System Jobs",
+      "crd6b_dashboardcomponent_BulkDeleteFailures": "Bulk Delete Failures",
+      "crd6b_dashboardcomponent_MailboxTrackingFolders": "Mailbox Auto Tracking Folders",
+      "crd6b_dashboardcomponent_PrincipalObjectAttributeAccesses": "Field Sharing",
+      "crd6b_dashboardcomponent_ProcessSession": "Process Sessions",
+      "crd6b_dashboardcomponent_SyncErrors": "Sync Errors",
+      "crd6b_dashboardcomponentid": "DashboardComponent",
+      "crd6b_id": "ID",
+      "crd6b_name": "Name",
+      "createdby": "Created By",
+      "createdon": "Created On",
+      "createdonbehalfby": "Created By (Delegate)",
+      "importsequencenumber": "Import Sequence Number",
+      "modifiedby": "Modified By",
+      "modifiedon": "Modified On",
+      "modifiedonbehalfby": "Modified By (Delegate)",
+      "overriddencreatedon": "Record Created On",
+      "owningbusinessunit": "Owning Business Unit",
+      "owningteam": "Owning Team",
+      "owninguser": "Owning User",
+      "statecode": "Status",
+      "statuscode": "Status Reason",
+      "timezoneruleversionnumber": "Time Zone Rule Version Number",
+      "utcconversiontimezonecode": "UTC Conversion Time Zone Code",
+      "versionnumber": "Version Number"
+    },
+    "PreferredName": "DashboardComponents",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "DashboardComponents (Views)",
+    "Name": "_crd6b_dashboardcomponent_views",
+    "RelatedEntityName": "DashboardComponents",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "89c41a5b-912b-49d5-813a-836449457195": "DashboardComponent Associated View",
+      "a697b83b-9439-40b3-b622-e2aa4fdf4e17": "DashboardComponent Advanced Find View",
+      "aeb5187c-cbf8-472b-9aea-fa6799957108": "DashboardComponent Lookup View",
+      "b925df1a-9919-4086-a822-4f18cf1064d5": "Inactive DashboardComponents",
+      "e7233c4e-70d7-465d-b106-49918ce1c758": "Active DashboardComponents"
+    }
+  },
+  {
+    "DisplayName": "Status (DashboardComponents)",
+    "Name": "crd6b_dashboardcomponent_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Active",
+      "1": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "DashboardComponents"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "DashboardComponents",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status Reason (DashboardComponents)",
+    "Name": "crd6b_dashboardcomponent_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Active",
+      "2": "Inactive"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "DashboardComponents"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "DashboardComponents",
+    "Type": "OptionSetInfo"
+  }
+]

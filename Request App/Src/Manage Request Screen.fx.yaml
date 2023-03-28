@@ -1,0 +1,922 @@
+"'Manage Request Screen' As screen":
+
+    "Gallery6 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+        DisplayMode: |-
+            =//DisplayMode.Edit
+            If(enableViewMore,DisplayMode.Disabled, enableRequestContainer,DisplayMode.Disabled,DisplayMode.Edit)
+        Items: |
+            =Projects
+            //Sort(Projects)
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =262
+        Width: =1082
+        X: =282
+        Y: =193
+        ZIndex: =1
+
+        Title10 As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =4
+            Size: =18
+            Text: =ThisItem.Title
+            VerticalAlign: =VerticalAlign.Top
+            Width: =351
+            X: =307
+            Y: =12
+            ZIndex: =1
+
+        "Gallery8 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+            Height: =144
+            Items: =Filter('Master List','PROJECT NAME' = ThisItem.Title)
+            Layout: =Layout.Vertical
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =50
+            Width: =1012
+            X: =26
+            Y: =99
+            ZIndex: =1
+
+            Title13 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Height: =50
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =14
+                Size: =14
+                Text: =ThisItem.'MODEL NAME'
+                VerticalAlign: =VerticalAlign.Top
+                Width: =145
+                ZIndex: =1
+
+            Separator11 As rectangle:
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =3
+
+            Label50 As label:
+                Align: =Align.Center
+                Height: =50
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.PILOT
+                Width: =157
+                Wrap: =false
+                X: =518
+                ZIndex: =8
+
+            Group11 As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =40
+                ZIndex: =8
+
+                Label46 As label:
+                    Align: =Align.Center
+                    Height: =50
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.DN
+                    Width: =43
+                    X: =155
+                    ZIndex: =5
+
+                Label47 As label:
+                    Align: =Align.Center
+                    Height: =50
+                    OnSelect: =Select(Parent)
+                    Text: =ThisItem.Q3
+                    Width: =37
+                    X: =222
+                    ZIndex: =6
+
+                Label49 As label:
+                    Align: =Align.Center
+                    FontWeight: =FontWeight.Bold
+                    Height: =44
+                    OnSelect: =Select(Parent)
+                    Size: =16
+                    Text: ="-"
+                    Width: =20
+                    X: =198
+                    Y: =6
+                    ZIndex: =7
+
+            Label52 As label:
+                Align: =Align.Center
+                Height: =45
+                OnSelect: =Select(Parent)
+                Text: =ThisItem.REQUEST
+                Width: =232
+                Wrap: =false
+                X: =286
+                Y: =5
+                ZIndex: =9
+
+            Dropdown1 As dropdown:
+                BorderStyle: =BorderStyle.None
+                ChevronBackground: =Switch(ThisItem.STATUS,"Done",Color.Green,"Not Started",Color.Red,"In Progress",Color.Yellow,"Approved",Color.YellowGreen,"Rejected",Color.Red,"Submitted",Color.GreenYellow,"Published",Color.Green) 
+                ChevronDisabledBackground: =Switch(ThisItem.STATUS,"Done",Color.Green,"Not Started",Color.OrangeRed,"In Progress",Color.Yellow,"Approved",Color.YellowGreen,"Rejected",Color.Red,"Submitted",Color.GreenYellow,"Published",Color.YellowGreen)
+                ChevronDisabledFill: =RGBA(255, 255, 255, 1)
+                ChevronHoverBackground: =If(ThisItem.STATUS="Published",RGBA(152, 208, 70, 1),Parent.Fill)
+                ChevronHoverFill: =Switch(ThisItem.STATUS,"Done",Color.Green,"Not Started",Color.OrangeRed,"In Progress",Color.Yellow,"Approved",Color.YellowGreen,"Rejected",Color.Red,"Submitted",Color.GreenYellow,"Published",Color.YellowGreen)
+                Color: =RGBA(255, 255, 255, 1)
+                DisabledBorderColor: =RGBA(152, 208, 70, 1)
+                DisabledColor: =RGBA(255, 255, 255, 1)
+                DisabledFill: =Switch(ThisItem.STATUS,"Done",Color.Green,"Not Started",Color.OrangeRed,"In Progress",Color.Yellow,"Approved",Color.YellowGreen,"Rejected",Color.Red,"Submitted",Color.GreenYellow,"Published",Color.YellowGreen)
+                DisplayMode: =If(ThisItem.STATUS="Published" Or ThisItem.STATUS= "Rejected",DisplayMode.Disabled,DisplayMode.Edit)
+                Fill: =Switch(ThisItem.STATUS,"Done",Color.Green,"Not Started",Color.OrangeRed,"In Progress",Color.Yellow,"Approved",Color.YellowGreen,"Rejected",Color.Red,"Submitted",Color.GreenYellow,"Published",Color.DarkGreen)
+                FontWeight: =FontWeight.Bold
+                Height: =30
+                HoverBorderColor: =Switch(ThisItem.STATUS,"Done",Color.Green,"Not Started",Color.OrangeRed,"In Progress",Color.Yellow,"Approved",Color.YellowGreen,"Rejected",Color.Red,"Submitted",Color.GreenYellow,"Published",Color.YellowGreen)
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =Switch(ThisItem.STATUS,"Done",Color.Green,"Not Started",Color.OrangeRed,"In Progress",Color.Yellow,"Approved",Color.YellowGreen,"Rejected",Color.Red,"Submitted",Color.GreenYellow,"Published",Color.YellowGreen)
+                Items: |-
+                    =//[ThisItem.STATUS]
+                    If(ThisItem.STATUS="Approved" Or ThisItem.STATUS = "Not Started" Or ThisItem.STATUS = "Submitted" Or ThisItem.STATUS = "In Progress",colStatusDropdown, [ThisItem.STATUS])
+                OnChange: |-
+                    =UpdateIf('Master List',ID=ThisItem.ID,{STATUS:Dropdown1.Selected.Value});
+                OnSelect: =Select(Parent)
+                SelectionFill: =RGBA(0, 0, 0, 1)
+                Size: =14
+                Width: =164
+                X: =705
+                Y: =10
+                ZIndex: =13
+
+            Button1 As button:
+                BorderColor: =RGBA(99, 139, 44, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =30
+                OnSelect: |-
+                    =UpdateIf('Master List',ID=ThisItem.ID,{STATUS:"Published"});
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="Publish"
+                Visible: =If(ThisItem.STATUS = "Done", true, false)
+                Width: =110
+                X: =887
+                Y: =7
+                ZIndex: =14
+
+            EditActionGroup_3 As group:
+                Height: =5
+                Width: =5
+                X: =-823
+                Y: =12
+                ZIndex: =27
+
+                Rectangle11_3 As rectangle:
+                    BorderColor: =RGBA(39, 67, 125, 1)
+                    BorderThickness: =1
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =27
+                    OnSelect: |-
+                        =Set(enableRequestContainer,true);
+                        Set(profileDetails, ThisItem);
+                    Visible: =If(ThisItem.STATUS="Done" Or ThisItem.STATUS="Published",false,true)
+                    Width: =25
+                    X: =919
+                    Y: =7
+                    ZIndex: =24
+
+                Rectangle12_3 As rectangle:
+                    BorderColor: =RGBA(39, 67, 125, 1)
+                    BorderThickness: =1
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =4
+                    OnSelect: |-
+                        =Set(enableRequestContainer,true);
+                        Set(profileDetails, ThisItem);
+                    Visible: =If(ThisItem.STATUS="Done" Or ThisItem.STATUS="Published",false,true)
+                    Width: =24
+                    X: =919
+                    Y: =38
+                    ZIndex: =25
+
+                Icon14_3 As icon.Edit:
+                    Height: =29
+                    Icon: =Icon.Edit
+                    OnSelect: |-
+                        =Set(enableRequestContainer,true);
+                        Set(profileDetails, ThisItem);
+                    Visible: =If(ThisItem.STATUS="Done" Or ThisItem.STATUS="Published",false,true)
+                    Width: =26
+                    X: =922
+                    Y: =9
+                    ZIndex: =26
+
+        Separator8 As rectangle:
+            Height: =2
+            OnSelect: =Select(Parent)
+            Width: =1056
+            X: =26
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =3
+
+        Label33 As label:
+            Color: =RGBA(149, 149, 149, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =18
+            Text: |-
+                ="Project Name :"
+            Width: =191
+            X: =97
+            Y: =15
+            ZIndex: =4
+
+        Label51 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(255, 191, 0, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =14
+            Text: =CountRows(Gallery8.AllItems)
+            Width: =32
+            X: =45
+            Y: =15
+            ZIndex: =11
+
+        Group10 As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =11
+
+            Label36 As label:
+                Align: =Align.Center
+                Fill: =RGBA(219, 219, 219, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =42
+                OnSelect: =Select(Parent)
+                Text: ="Meter"
+                Width: =140
+                X: =26
+                Y: =57
+                ZIndex: =5
+
+            Label37 As label:
+                Align: =Align.Center
+                Fill: =RGBA(219, 219, 219, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =42
+                OnSelect: =Select(Parent)
+                Text: ="Profile"
+                Width: =145
+                X: =162
+                Y: =57
+                ZIndex: =6
+
+            Label38 As label:
+                Align: =Align.Center
+                Fill: =RGBA(219, 219, 219, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =42
+                OnSelect: =Select(Parent)
+                Text: ="Request"
+                Width: =232
+                X: =307
+                Y: =57
+                ZIndex: =7
+
+            Label39 As label:
+                Align: =Align.Center
+                Fill: =RGBA(219, 219, 219, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =42
+                OnSelect: =Select(Parent)
+                Text: ="Pilots"
+                Width: =171
+                X: =537
+                Y: =57
+                ZIndex: =8
+
+            Label40 As label:
+                Align: =Align.Center
+                Fill: =RGBA(219, 219, 219, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =42
+                OnSelect: =Select(Parent)
+                Text: ="Progress"
+                Width: =200
+                X: =699
+                Y: =57
+                ZIndex: =9
+
+            Label43 As label:
+                Align: =Align.Center
+                Fill: =RGBA(219, 219, 219, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =42
+                OnSelect: =Select(Parent)
+                Text: ="Action"
+                X: =888
+                Y: =57
+                ZIndex: =10
+
+    Label5_2 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledBorderColor: =RGBA(116, 116, 116, 1)
+        DisabledColor: =RGBA(237, 237, 237, 1)
+        DisabledFill: =RGBA(130, 141, 158, 0.67)
+        DisplayMode: |-
+            =//DisplayMode.Edit
+            If(enableViewMore,DisplayMode.Disabled, enableRequestContainer,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(130, 141, 158, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =60
+        Size: =24
+        Text: ="REQUEST - APP"
+        Width: =1366
+        ZIndex: =2
+
+    Label28 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Bold
+        Height: =42
+        Size: =16
+        Text: ="New Events"
+        X: =648
+        Y: =72
+        ZIndex: =4
+
+    Label29 As label:
+        Align: =Align.Right
+        FontWeight: =FontWeight.Bold
+        Height: =79
+        Size: =18
+        Text: ="New Request"
+        Width: =180
+        X: =410
+        Y: =101
+        ZIndex: =5
+
+    Circle1 As circle:
+        Fill: =RGBA(123, 161, 67, 1)
+        Height: =50
+        Width: =50
+        X: =360
+        Y: =117
+        ZIndex: =6
+
+    Label30 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Bold
+        Text: =CountIf('Master List',STATUS="Submitted")
+        Width: =50
+        X: =360
+        Y: =122
+        ZIndex: =7
+
+    Icon12 As icon.VerticalLine:
+        Color: =RGBA(149, 149, 149, 1)
+        Height: =63
+        Icon: =Icon.VerticalLine
+        Width: =24
+        X: =603
+        Y: =117
+        ZIndex: =8
+
+    Button5 As button:
+        BorderStyle: =BorderStyle.None
+        Color: =RGBA(99, 139, 44, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =53
+        HoverColor: =RGBA(99, 139, 44, 1)
+        HoverFill: =
+        Italic: =true
+        OnSelect: =Set(enableViewMore,true)
+        PressedColor: =RGBA(99, 139, 44, 1)
+        PressedFill: =RGBA(255, 255, 255, 1)
+        Size: =18
+        Text: ="View More"
+        Width: =150
+        X: =648
+        Y: =114
+        ZIndex: =9
+
+    Rectangle8 As rectangle:
+        Fill: =RGBA(0, 0, 0, 1)
+        Height: =2
+        Width: =1050
+        X: =311
+        Y: =190
+        ZIndex: =10
+
+    VewMoreContainer As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =601
+        Visible: =If(enableViewMore,true,false)
+        Width: =1081
+        X: =280
+        Y: =114
+        ZIndex: =11
+
+        Label10 As label:
+            Align: =Align.Center
+            Fill: =RGBA(175, 191, 224, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =72
+            Size: =18
+            Text: ="Submitted Requests"
+            Width: =1080
+            ZIndex: =1
+
+        "Gallery3 As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver4.0'":
+            Height: =529
+            Items: =Filter('Master List',STATUS="Submitted")
+            Layout: =Layout.Vertical
+            TemplatePadding: =0
+            TemplateSize: =133
+            Width: =1080
+            Y: =72
+            ZIndex: =1
+
+            Title7 As label:
+                Height: =31
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =ThisItem.'MODEL NAME'
+                VerticalAlign: =VerticalAlign.Top
+                Width: =465
+                X: =34
+                Y: =30
+                ZIndex: =1
+
+            Separator9 As rectangle:
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =Parent.TemplateWidth
+                Y: =Parent.TemplateHeight - 1
+                ZIndex: =5
+
+            Button7 As button:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                FontWeight: =FontWeight.Bold
+                OnSelect: |-
+                    =Set(enableRequestContainer,true);
+                    Set(Data,ThisItem);
+                    Set(isApprove,true);
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Text: ="Action Needed"
+                Width: =175
+                X: =798
+                Y: =36
+                ZIndex: =6
+
+            Group6 As group:
+                Height: =5
+                Width: =5
+                X: =40
+                Y: =40
+                ZIndex: =11
+
+                Label31 As label:
+                    Color: =RGBA(116, 116, 116, 1)
+                    FontWeight: =FontWeight.Bold
+                    OnSelect: =Select(Parent)
+                    Size: =14
+                    Text: =ThisItem.'Created By'.DisplayName
+                    Width: =225
+                    X: =110
+                    Y: =76
+                    ZIndex: =7
+
+                Label32 As label:
+                    Color: =RGBA(116, 116, 116, 1)
+                    FontWeight: =FontWeight.Bold
+                    OnSelect: =Select(Parent)
+                    Size: =14
+                    Text: =ThisItem.Created
+                    Width: =192
+                    X: =420
+                    Y: =76
+                    ZIndex: =8
+
+                Label34 As label:
+                    Color: =RGBA(116, 116, 116, 1)
+                    FontWeight: =FontWeight.Bold
+                    OnSelect: =Select(Parent)
+                    Size: =14
+                    Text: |-
+                        ="From :"
+                    Width: =76
+                    X: =34
+                    Y: =76
+                    ZIndex: =9
+
+                Label42 As label:
+                    Color: =RGBA(116, 116, 116, 1)
+                    FontWeight: =FontWeight.Bold
+                    OnSelect: =Select(Parent)
+                    Size: =14
+                    Text: |-
+                        ="Date :"
+                    Width: =72
+                    X: =348
+                    Y: =76
+                    ZIndex: =10
+
+        Icon4 As icon.Cancel:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =40
+            Icon: =Icon.Cancel
+            OnSelect: =Set(enableViewMore,false)
+            Width: =40
+            X: =1005
+            Y: =13
+            ZIndex: =2
+
+    RequestApprovedContainer As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =657
+        Visible: =If(enableRequestContainer,true,false)
+        Width: =1044
+        X: =295
+        Y: =97
+        ZIndex: =12
+
+        Label54 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(6, 102, 110, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =74
+            Size: =20
+            Text: ="Request Successfully Approved"
+            Width: =1044
+            ZIndex: =1
+
+        Icon16 As icon.Cancel:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =40
+            Icon: =Icon.Cancel
+            OnSelect: |-
+                =Set(enableRequestContainer,false);
+                Set(isApprove,false);
+            Width: =40
+            X: =969
+            Y: =19
+            ZIndex: =2
+
+        Label55 As label:
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =37
+            Size: =18
+            Text: ="Request Description"
+            Width: =267
+            X: =212
+            Y: =95
+            ZIndex: =3
+
+        Rectangle13 As rectangle:
+            Height: =427
+            Width: =3
+            X: =526
+            Y: =157
+            ZIndex: =4
+
+        Button6 As button:
+            Fill: =RGBA(102, 182, 227, 1)
+            Height: =39
+            OnSelect: |-
+                =UpdateIf('Master List',ID = profileDetails.ID,{PILOT:  ComboBox1.Selected.DisplayName, PILOTMAIL:ComboBox1.Selected.Mail});
+                Set(enableRequestContainer,false); Notify("Pilot is Updated",NotificationType.Success);
+                Reset(ComboBox1);
+                // Concat(ComboBox1.SelectedItems, Concat('Master List', ComboBox1.Selected.DisplayName & ","))
+            Text: ="Save"
+            Visible: =If(isApprove,false,true)
+            X: =619
+            Y: =488
+            ZIndex: =9
+
+        Label57 As label:
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: =If(isApprove,Data.DN, profileDetails.DN)
+            X: =207
+            Y: =385
+            ZIndex: =10
+
+        Label58 As label:
+            Align: =Align.Right
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="DN:"
+            X: =50
+            Y: =386
+            ZIndex: =11
+
+        Label59 As label:
+            Align: =Align.Right
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="Submission date:"
+            Width: =187
+            X: =13
+            Y: =185
+            ZIndex: =12
+
+        Label60 As label:
+            Align: =Align.Right
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="Department:"
+            X: =54
+            Y: =222
+            ZIndex: =13
+
+        Label61 As label:
+            Align: =Align.Right
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="Brand:"
+            X: =53
+            Y: =262
+            ZIndex: =14
+
+        Label62 As label:
+            Align: =Align.Right
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="Model:"
+            X: =50
+            Y: =305
+            ZIndex: =15
+
+        Label63 As label:
+            Align: =Align.Right
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="Q3:"
+            X: =50
+            Y: =427
+            ZIndex: =16
+
+        Label64 As label:
+            Align: =Align.Right
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="Technology:"
+            X: =54
+            Y: =346
+            ZIndex: =17
+
+        Label65 As label:
+            Align: =Align.Right
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="Project Name:"
+            X: =50
+            Y: =467
+            ZIndex: =18
+
+        Label66 As label:
+            Align: =Align.Right
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="Why this request?:"
+            Width: =188
+            X: =13
+            Y: =527
+            ZIndex: =19
+
+        Label67 As label:
+            Align: =Align.Right
+            Color: =RGBA(0, 94, 146, 1)
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: |-
+                ="From:"
+            X: =50
+            Y: =146
+            ZIndex: =20
+
+        Label68 As label:
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: =If(isApprove,Data.'Created By'.DisplayName, profileDetails.'Created By'.DisplayName)
+            Width: =234
+            X: =207
+            Y: =146
+            ZIndex: =21
+
+        Label69 As label:
+            FontWeight: =FontWeight.Bold
+            Height: =38
+            Size: =14
+            Text: =If(isApprove,Data.Created, profileDetails.Created)
+            Width: =234
+            X: =207
+            Y: =186
+            ZIndex: =22
+
+        Label70 As label:
+            FontWeight: =FontWeight.Bold
+            Height: =38
+            Size: =14
+            Text: =If(isApprove,Data.DEPARTMENT, profileDetails.DEPARTMENT)
+            Width: =294
+            X: =207
+            Y: =224
+            ZIndex: =23
+
+        Label71 As label:
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: =If(isApprove,Data.CONSTRUCTOR, profileDetails.CONSTRUCTOR)
+            Width: =234
+            X: =207
+            Y: =262
+            ZIndex: =24
+
+        Label72 As label:
+            FontWeight: =FontWeight.Bold
+            Height: =42
+            Size: =14
+            Text: =If(isApprove,Data.'MODEL NAME', profileDetails.'MODEL NAME')
+            Width: =245
+            X: =207
+            Y: =303
+            ZIndex: =25
+
+        Label74 As label:
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: =If(isApprove,Data.TECHNOLOGY, profileDetails.TECHNOLOGY)
+            Width: =234
+            X: =207
+            Y: =345
+            ZIndex: =26
+
+        Label75 As label:
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: =If(isApprove,Data.Q3, profileDetails.Q3)
+            X: =207
+            Y: =427
+            ZIndex: =27
+
+        Label76 As label:
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: =If(isApprove,Data.'PROJECT NAME', profileDetails.'PROJECT NAME')
+            Width: =294
+            Wrap: =false
+            X: =207
+            Y: =467
+            ZIndex: =28
+
+        Label77 As label:
+            FontWeight: =FontWeight.Bold
+            Size: =14
+            Text: =If(isApprove,Data.'WHY THIS REQUEST?', profileDetails.'WHY THIS REQUEST?')
+            Width: =272
+            X: =207
+            Y: =527
+            ZIndex: =29
+
+        Button8 As button:
+            BorderColor: =RGBA(221, 79, 14, 1)
+            Color: =RGBA(0, 0, 0, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: |-
+                =UpdateIf('Master List',ID = Data.ID,{STATUS:"Rejected"});
+                Set(enableRequestContainer,false); Set(isApprove,false); Notify("Status is Rejected",NotificationType.Information);
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Reject"
+            Visible: =If(isApprove,true,false)
+            X: =779
+            Y: =169
+            ZIndex: =30
+
+        Button9 As button:
+            BorderColor: =Color.Green
+            Color: =RGBA(0, 0, 0, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: |
+                =UpdateIf('Master List',ID = Data.ID,{STATUS:"Approved"});
+                Set(enableRequestContainer,false); Set(isApprove,false); Notify("Status is Updated Successfuly",NotificationType.Success);
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Text: ="Approve"
+            Visible: =If(isApprove,true,false)
+            X: =619
+            Y: =169
+            ZIndex: =31
+
+        Group2 As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =33
+
+            Label56 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Size: =16
+                Text: ="Assign to (Pilot)"
+                Visible: =If(isApprove,false,true)
+                Width: =230
+                X: =619
+                Y: =271
+                ZIndex: =8
+
+            ComboBox1 As combobox:
+                DisplayFields: =["DisplayName","Mail"]
+                Items: |-
+                    =//Office365Users.SearchUser({searchTerm:ComboBox1.SearchText})
+                    Office365Users.SearchUser({searchTerm: ComboBox1.SearchText})
+                SearchFields: =["DisplayName"]
+                SearchItems: |-
+                    =Search(//Office365Users.SearchUser({searchTerm:ComboBox1.SearchText})
+                    Office365Users.SearchUser({searchTerm: ComboBox1.SearchText}),ComboBox1.SearchText,"DisplayName")
+                Template: =ListItemTemplate.Person
+                Visible: =If(isApprove,false,true)
+                X: =619
+                Y: =317
+                ZIndex: =32
+
+    Component1_4 As Component1:
+        CreateRequestScreen: ='Create New Request Screen'
+        Height: =324
+        ManageRequestScreen: ='Manage Request Screen'
+        OverviewRequestScreen: ='OverView Requests Screen'
+        RequestDescriptionScreen: ='Request Description Screen'
+        Y: =60
+        ZIndex: =14
+
+    Rectangle7_1 As rectangle:
+        BorderColor: =RGBA(116, 116, 116, 1)
+        Fill: =RGBA(116, 116, 116, 1)
+        Height: =708
+        Width: =2
+        X: =280
+        Y: =60
+        ZIndex: =15
+

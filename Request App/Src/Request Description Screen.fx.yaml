@@ -1,0 +1,178 @@
+"'Request Description Screen' As screen":
+    OnVisible: =
+
+    Image5 As image:
+        DisabledBorderColor: =RGBA(149, 149, 149, 1)
+        DisabledFill: =RGBA(255, 255, 255, 1)
+        DisplayMode: |-
+            =//DisplayMode.Edit
+            If(mechanicalPopup,DisplayMode.Disabled,DisplayMode.Edit)
+        Height: =427
+        Image: =rightPic
+        Width: =294
+        X: =1032
+        Y: =94
+        ZIndex: =1
+
+    Image4 As image:
+        DisabledFill: =RGBA(255, 255, 255, 1)
+        DisplayMode: =If(mechanicalPopup,DisplayMode.Disabled,DisplayMode.Edit)
+        Height: =387
+        Image: =leftPic
+        Width: =289
+        X: =337
+        Y: =94
+        ZIndex: =2
+
+    Rectangle6 As rectangle:
+        BorderColor: =RGBA(255, 191, 0, 1)
+        BorderThickness: =3
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =162
+        Width: =232
+        X: =656
+        Y: =89
+        ZIndex: =3
+
+    Label5_3 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(255, 255, 255, 1)
+        DisabledFill: =RGBA(101, 121, 138, 0.68)
+        DisplayMode: |-
+            =//DisplayMode.Edit
+            If(mechanicalPopup,DisplayMode.Disabled,DisplayMode.Edit)
+        Fill: =RGBA(130, 141, 158, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =60
+        Size: =24
+        Text: ="REQUEST - APP"
+        Width: =1366
+        ZIndex: =4
+
+    Label10_3 As label:
+        Align: =Align.Center
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        DisplayMode: |-
+            =//DisplayMode.Edit
+            If(mechanicalPopup,DisplayMode.Disabled,DisplayMode.Edit)
+        FontWeight: =FontWeight.Bold
+        OnSelect: |-
+            =Set(mechanicalPopup,true);
+            Set(Container, "");
+        Size: =16
+        Text: ="Mechanical Register"
+        Underline: =true
+        Width: =227
+        X: =661
+        Y: =141
+        ZIndex: =5
+
+    Label11_3 As label:
+        Align: =Align.Center
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        DisplayMode: |-
+            =//DisplayMode.Edit
+            If(mechanicalPopup,DisplayMode.Disabled,DisplayMode.Edit)
+        FontWeight: =FontWeight.Bold
+        OnSelect: |-
+            =Set(Container,"ElectronicCont");
+            Set(mechanicalPopup,true);
+        Size: =16
+        Text: ="Electronic Register"
+        Underline: =true
+        Width: =227
+        X: =656
+        Y: =189
+        ZIndex: =6
+
+    Label12_3 As label:
+        Align: =Align.Center
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =1
+        Color: =RGBA(255, 191, 0, 1)
+        DisplayMode: |-
+            =//DisplayMode.Edit
+            If(mechanicalPopup,DisplayMode.Disabled,DisplayMode.Edit)
+        FontWeight: =FontWeight.Bold
+        Size: =16
+        Text: ="Register"
+        Width: =102
+        X: =719
+        Y: =89
+        ZIndex: =7
+
+    MechanicalContainer As groupContainer.manualLayoutContainer:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =479
+        Visible: =If(mechanicalPopup,true,false)
+        Width: =1086
+        X: =280
+        Y: =162
+        ZIndex: =15
+
+        Group8 As group:
+            Height: =5
+            Width: =5
+            X: =-255
+            Y: =-160
+            ZIndex: =4
+
+            Image3 As image:
+                Height: =339
+                Image: =If(Container = "ElectronicCont",electrical,Propeller)
+                Width: =1086
+                Y: =98
+                ZIndex: =1
+
+            Label27 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(136, 160, 209, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =54
+                Size: =18
+                Text: =If(Container="ElectronicCont","Electronic Register" ,"Mechanical Register")
+                Width: =1086
+                Y: =3
+                ZIndex: =2
+
+            Icon11 As icon.Cancel:
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =27
+                Icon: =Icon.Cancel
+                OnSelect: =Set(mechanicalPopup,false)
+                Width: =30
+                X: =1035
+                Y: =17
+                ZIndex: =3
+
+    Component1_1 As Component1:
+        CreateRequestScreen: ='Create New Request Screen'
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =329
+        ManageRequestScreen: ='Manage Request Screen'
+        OverviewRequestScreen: ='OverView Requests Screen'
+        RequestDescriptionScreen: ='Request Description Screen'
+        Y: =60
+        ZIndex: =17
+
+    Rectangle7 As rectangle:
+        BorderColor: =RGBA(116, 116, 116, 1)
+        Fill: =RGBA(116, 116, 116, 1)
+        Height: =708
+        Width: =2
+        X: =280
+        Y: =60
+        ZIndex: =18
+
+    Label13 As label:
+        Height: =105
+        Text: =
+        Width: =188
+        X: =448
+        Y: =536
+        ZIndex: =19
+

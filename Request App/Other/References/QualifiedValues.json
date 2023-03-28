@@ -1,0 +1,23 @@
+{
+  "QualifiedValues": [
+    {
+      "Kind": "default.cds_crd6b_dashboardcomponent_forms",
+      "Namespace": "DashboardComponents (Forms)",
+      "Values": {
+        "Information": "2f56c1c7-1f2a-434f-9bd7-8b2d6509fbc0"
+      }
+    },
+    {
+      "Kind": "default.cds_activitypointer_forms",
+      "Namespace": "Activities (Forms)",
+      "Values": {}
+    },
+    {
+      "Kind": "default.cds_crd6b_dashboards_forms",
+      "Namespace": "Dashboards (Forms)",
+      "Values": {
+        "Information": "9c74bacb-22b3-44b1-af2a-7d5192a853e9"
+      }
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "493fce83-53bd-4139-a0ff-560b9cd02cdc": {
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectoricons-prod.azureedge.net/u/laborbol/releases/ase-v3/1.0.1622.3200/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "493fce83-53bd-4139-a0ff-560b9cd02cdc"
+  },
+  "5ad2aca8-8599-4d54-9834-535882521f83": {
+    "connectionParameters": {
+      "logicAppHostType": "ARM",
+      "workFlowCallbackUri": "https://prod-33.southeastasia.logic.azure.com:443/workflows/3adba853748f474fbda77425c8293a7e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=72Nc4ttF_gBg2EBhCD8Vno8OLCZ7WQcL0D7Dy82jmig",
+      "workflowEndpoint": "/subscriptions/24fa6447-0d7f-439d-9ee6-3b1984fec8b6/resourceGroups/ddefa9324a8c49a38d40fb657833932b-125cafa502784bad826551c5576d511a/providers/Microsoft.Logic/workflows/21561f9e-d620-4a14-9fbb-557429255a13",
+      "workflowName": "21561f9e-d620-4a14-9fbb-557429255a13",
+      "workflowPath": "/subscriptions/24fa6447-0d7f-439d-9ee6-3b1984fec8b6/resourceGroups/ddefa9324a8c49a38d40fb657833932b-125cafa502784bad826551c5576d511a/providers/Microsoft.Logic/workflows/21561f9e-d620-4a14-9fbb-557429255a13"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Logic flows",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1615/1.0.1615.3163/logicflows/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_logicflows",
+      "parameterHints": {
+        "ce744e51-e25e-4d6e-8ff0-66a5d248a231": {
+          "value": "shared_sharepointonline"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "21561f9e-d620-4a14-9fbb-557429255a13"
+        }
+      },
+      "parameterHintsV2": {
+        "shared_sharepointonline": {
+          "value": "ce744e51-e25e-4d6e-8ff0-66a5d248a231"
+        },
+        "workflowEntityId": {},
+        "workflowName": {
+          "value": "21561f9e-d620-4a14-9fbb-557429255a13"
+        }
+      }
+    },
+    "datasets": {},
+    "dataSources": [
+      "OnStart"
+    ],
+    "dependencies": {
+      "shared_sharepointonline": "ce744e51-e25e-4d6e-8ff0-66a5d248a231"
+    },
+    "dependents": [],
+    "id": "5ad2aca8-8599-4d54-9834-535882521f83"
+  },
+  "b3bcd9ef-222e-48f9-aff3-7e9cd3d263d0": {
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Azure AD",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1600/1.0.1600.3026/azuread/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_azuread",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "AzureAD"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "b3bcd9ef-222e-48f9-aff3-7e9cd3d263d0"
+  },
+  "ce744e51-e25e-4d6e-8ff0-66a5d248a231": {
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1625/1.0.1625.3226/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://n7r7.sharepoint.com/sites/Task2RequestApp": {
+        "dataSources": {
+          "Constructors": {
+            "tableName": "a64a802b-d74b-4791-987e-1d8d5aafb57b"
+          },
+          "Master List": {
+            "tableName": "590aedc4-ed43-49f1-96bb-8511fbda6285"
+          },
+          "Meters": {
+            "tableName": "0d0f02a2-3ddc-4d70-8bd0-77ab65e903b1"
+          },
+          "Profiles": {
+            "tableName": "4949812b-5fba-4008-af7d-bc1331413250"
+          },
+          "Projects": {
+            "tableName": "7dbf8af9-931f-4a5c-a69c-a57b71a7bfd2"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Constructors",
+      "Master List",
+      "Meters",
+      "Profiles",
+      "Projects"
+    ],
+    "dependencies": {},
+    "dependents": [
+      "5ad2aca8-8599-4d54-9834-535882521f83"
+    ],
+    "id": "ce744e51-e25e-4d6e-8ff0-66a5d248a231"
+  }
+}

@@ -1,0 +1,889 @@
+"'Create New Request Screen' As screen":
+
+    Label5_1 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Fill: =RGBA(130, 141, 158, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =60
+        Size: =24
+        Text: ="REQUEST - APP"
+        Width: =1366
+        ZIndex: =2
+
+    NewRequestForm As form:
+        DataSource: ='Master List'
+        DefaultMode: =FormMode.New
+        Height: =708
+        NumberOfColumns: =2
+        Width: =1069
+        X: =280
+        Y: =59
+        ZIndex: =5
+
+        DEPARTMENT_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="DEPARTMENT"
+            Default: =ThisItem.DEPARTMENT
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"DEPARTMENT")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "DEPARTMENT")
+            Required: =true
+            Update: =DataCardValue1.Selected.Value
+            Width: =534
+            X: =1
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Size: =18
+                Text: =Concat(Split(Parent.DisplayName,""), Value & " ")
+                Width: =427
+                Wrap: =false
+                X: =57
+                ZIndex: =1
+
+            ErrorMessage1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue1.Y + DataCardValue1.Height
+                ZIndex: =3
+
+            StarVisible1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey1.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =96
+                Y: =DataCardKey1.Y
+                ZIndex: =4
+
+            DataCardValue1 As dropdown:
+                BorderStyle: =BorderStyle.None
+                ChevronBackground: =RGBA(202, 202, 202, 1)
+                ChevronFill: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =45
+                Items: =Distinct(Meters,Department)
+                SelectionColor: =RGBA(0, 0, 0, 1)
+                SelectionFill: =RGBA(202, 202, 202, 1)
+                Width: =475
+                X: =30
+                Y: =59
+                ZIndex: =5
+
+            Rectangle4_1 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =27
+                Y: =40
+                ZIndex: =7
+
+        "'WHY THIS REQUEST?_DataCard1' As typedDataCard.textualEditCard":
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="WHYTHISREQUEST_x003f_"
+            Default: =ThisItem.'WHY THIS REQUEST?'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"WHYTHISREQUEST_x003f_")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "WHYTHISREQUEST_x003f_")
+            Required: =false
+            Update: =DataCardValue7.Text
+            Width: =534
+            X: =1
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey7 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Size: =18
+                Text: =Concat(Split(Parent.DisplayName,""), Value & " ")
+                Width: =435
+                Wrap: =false
+                X: =48
+                ZIndex: =1
+
+            ErrorMessage7 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue7.Y + DataCardValue7.Height
+                ZIndex: =3
+
+            StarVisible7 As label:
+                Align: =Align.Center
+                Height: =DataCardKey7.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey7.Y
+                ZIndex: =4
+
+            Rectangle4_3 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =27
+                Y: =40
+                ZIndex: =5
+
+            DataCardValue7 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                BorderThickness: =1
+                Default: =
+                Height: =86
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Width: =480
+                X: =27
+                Y: =54
+                ZIndex: =6
+
+        REQUEST_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="REQUEST"
+            Default: =ThisItem.REQUEST
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"REQUEST")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =213
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "REQUEST")
+            Required: =false
+            Update: |
+                =Concat(RequestStored,Value,",")
+            Width: =534
+            X: =0
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey8 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                FontWeight: =FontWeight.Bold
+                Height: =34
+                Size: =18
+                Text: =Concat(Split(Parent.DisplayName,""), Value & " ")
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =17
+                ZIndex: =1
+
+            ErrorMessage8 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey8.Y +DataCardKey8.Height
+                ZIndex: =3
+
+            StarVisible8 As label:
+                Align: =Align.Center
+                Height: =DataCardKey8.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey8.Y
+                ZIndex: =4
+
+            Rectangle4_8 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =40
+                Y: =43
+                ZIndex: =11
+
+            Rectangle5 As rectangle:
+                Fill: =RGBA(116, 116, 116, 1)
+                Height: =125
+                Width: =3
+                X: =277
+                Y: =43
+                ZIndex: =12
+
+            "DataCardValue8 As gallery.'BrowseLayout_Vertical_OneTextVariant_ver4.0'":
+                Height: =129
+                Items: =varRequestData
+                Layout: =Layout.Vertical
+                ShowScrollbar: =false
+                TemplatePadding: =0
+                TemplateSize: =40
+                Width: =480
+                WrapCount: =2
+                X: =42
+                Y: =87
+                ZIndex: =14
+
+                Checkbox2 As checkbox:
+                    BorderStyle: =BorderStyle.None
+                    Height: =38
+                    HoverBorderColor: =
+                    OnCheck: |-
+                        =//Collect(RequestStored,ShowColumns(Filter(DataCardValue8.AllItems, Checkbox2.Value),"Title"))
+                        Collect(RequestStored,DataCardValue8.Selected.Title);
+                    OnSelect: =Select(Parent)
+                    OnUncheck: |
+                        =Remove(RequestStored, LookUp(RequestStored, Value=Checkbox2.Text));
+                    PressedBorderColor: =
+                    Text: =ThisItem.Title
+                    Width: =248.5
+                    X: =4
+                    ZIndex: =4
+
+            Label2 As label:
+                Color: =Color.Red
+                FontWeight: =FontWeight.Bold
+                Height: =30
+                Size: =11
+                Text: ="Design & Performance analysis"
+                Width: =237
+                X: =40
+                Y: =50
+                ZIndex: =15
+
+            Label9 As label:
+                Color: =Color.Red
+                FontWeight: =FontWeight.Bold
+                Height: =30
+                Size: =11
+                Text: ="Dismantaling & Cost Analysis"
+                Width: =242
+                X: =292
+                Y: =50
+                ZIndex: =16
+
+        DataCard3 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =151
+            Width: =534
+            X: =1
+            Y: =4
+            ZIndex: =1
+
+            Button3 As button:
+                BorderStyle: =BorderStyle.None
+                Fill: =RGBA(136, 160, 209, 1)
+                FontWeight: =FontWeight.Bold
+                HoverFill: =RGBA(175, 191, 224, 1)
+                OnSelect: |+
+                    =If(NewRequestForm.Valid,SubmitForm(NewRequestForm); Notify("You Successfully Submited the details!",NotificationType.Success);ResetForm(NewRequestForm), Notify("Please enter all fields!",NotificationType.Error));
+                    
+                Size: =18
+                Text: ="Save"
+                X: =128
+                Y: =125
+                ZIndex: =1
+
+            Button4 As button:
+                BorderStyle: =BorderStyle.None
+                Fill: =RGBA(221, 79, 14, 1)
+                FontWeight: =FontWeight.Bold
+                HoverBorderColor: =Color.Red
+                HoverFill: =RGBA(250, 155, 112, 1)
+                OnSelect: =ResetForm(NewRequestForm)
+                Size: =18
+                Text: ="Cancel"
+                X: =327
+                Y: =125
+                ZIndex: =2
+
+        CONSTRUCTOR_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="CONSTRUCTOR"
+            Default: =ThisItem.CONSTRUCTOR
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"CONSTRUCTOR")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =113
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "CONSTRUCTOR")
+            Required: =true
+            Update: =DataCardValue11.Selected.Value
+            Width: =534
+            X: =0
+            Y: =0
+            ZIndex: =6
+
+            ErrorMessage11 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =102
+                ZIndex: =3
+
+            StarVisible11 As label:
+                Align: =Align.Center
+                Height: =DataCardKey11.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =91
+                Y: =DataCardKey11.Y
+                ZIndex: =4
+
+            DataCardValue11 As dropdown:
+                BorderStyle: =BorderStyle.None
+                ChevronBackground: =RGBA(219, 219, 219, 1)
+                ChevronFill: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =45
+                HoverFill: =RGBA(202, 202, 202, 1)
+                Items: |-
+                    =//["BMW","Audi","Range Rover","Ford","Jaguar","Rolls Roys"]
+                    Distinct(Constructors,Title)
+                SelectionColor: =RGBA(0, 0, 0, 1)
+                SelectionFill: =RGBA(237, 237, 237, 1)
+                Width: =280
+                X: =240
+                Y: =57
+                ZIndex: =5
+
+            Rectangle4 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =40
+                Y: =40
+                ZIndex: =6
+
+            Icon1 As icon.VerticalLine:
+                Color: =RGBA(130, 141, 158, 1)
+                Height: =59
+                Icon: =Icon.VerticalLine
+                Width: =20
+                X: =217
+                Y: =43
+                ZIndex: =7
+
+            Label20 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =45
+                Text: ="Select in the list"
+                Width: =164
+                X: =66
+                Y: =47
+                ZIndex: =8
+
+            DataCardKey11 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Height: =42
+                Size: =18
+                Text: =Concat(Split(Parent.DisplayName,""), Value & " ")
+                Width: =438
+                X: =66
+                ZIndex: =9
+
+        MODEL_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="MODEL"
+            Default: =ThisItem.'MODEL NAME'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"MODEL")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =137
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "MODEL")
+            Required: =true
+            Update: =DataCardValue2.Selected.'Meter type'
+            Width: =534
+            X: =0
+            Y: =1
+            ZIndex: =6
+
+            DataCardKey2 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                FontWeight: =FontWeight.Bold
+                Height: =34
+                Size: =18
+                Text: =Concat(Split(Parent.DisplayName,""), Value & " ")
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                ZIndex: =1
+
+            ErrorMessage2 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =103
+                ZIndex: =3
+
+            StarVisible2 As label:
+                Align: =Align.Center
+                Height: =DataCardKey2.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =91
+                ZIndex: =4
+
+            DataCardValue2 As dropdown:
+                BorderStyle: =BorderStyle.None
+                ChevronBackground: =RGBA(219, 219, 219, 1)
+                ChevronFill: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =45
+                Items: =Filter(Meters,Brand = DataCardValue11.Selected.Value).'Meter type'
+                SelectionColor: =RGBA(0, 0, 0, 1)
+                SelectionFill: =RGBA(219, 219, 219, 1)
+                Width: =280
+                X: =239
+                Y: =58
+                ZIndex: =5
+
+            Rectangle4_2 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =39
+                Y: =41
+                ZIndex: =6
+
+            Icon1_1 As icon.VerticalLine:
+                Color: =RGBA(130, 141, 158, 1)
+                Height: =59
+                Icon: =Icon.VerticalLine
+                Width: =20
+                X: =215
+                Y: =43
+                ZIndex: =7
+
+            Label21 As label:
+                FontWeight: =FontWeight.Bold
+                Text: ="Select in the list"
+                X: =69
+                Y: =58
+                ZIndex: =8
+
+        TECHNOLOGY_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="TECHNOLOGY"
+            Default: =ThisItem.TECHNOLOGY
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"TECHNOLOGY")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =127
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "TECHNOLOGY")
+            Required: =true
+            Update: =DataCardValue5.Selected.Value
+            Width: =534
+            X: =0
+            Y: =2
+            ZIndex: =6
+
+            DataCardKey5 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                FontWeight: =FontWeight.Bold
+                Height: =34
+                Size: =18
+                Text: =Concat(Split(Parent.DisplayName,""), Value & " ")
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =43
+                ZIndex: =1
+
+            ErrorMessage5 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =101
+                ZIndex: =3
+
+            StarVisible5 As label:
+                Align: =Align.Center
+                Height: =DataCardKey5.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =91
+                ZIndex: =4
+
+            Rectangle4_4 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =40
+                Y: =40
+                ZIndex: =6
+
+            Icon1_2 As icon.VerticalLine:
+                Color: =RGBA(130, 141, 158, 1)
+                Height: =59
+                Icon: =Icon.VerticalLine
+                Width: =20
+                X: =210
+                Y: =40
+                ZIndex: =7
+
+            Label21_1 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =41
+                Text: ="Select in the list"
+                X: =60
+                Y: =58
+                ZIndex: =8
+
+            DataCardValue5 As dropdown:
+                BorderStyle: =BorderStyle.None
+                ChevronBackground: =RGBA(219, 219, 219, 1)
+                ChevronFill: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =45
+                Items: =Distinct(Meters,Technology)
+                SelectionColor: =RGBA(0, 0, 0, 1)
+                SelectionFill: =RGBA(219, 219, 219, 1)
+                Width: =280
+                X: =240
+                Y: =56
+                ZIndex: =9
+
+        PROJECT_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="PROJECT"
+            Default: =ThisItem.'PROJECT NAME'
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"PROJECT")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =125
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "PROJECT")
+            Required: =true
+            Update: =DataCardValue6.Selected.Value
+            Width: =534
+            X: =1
+            Y: =2
+            ZIndex: =6
+
+            DataCardKey6 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                FontWeight: =FontWeight.Bold
+                Height: =34
+                Size: =18
+                Text: =Concat(Split(Parent.DisplayName,""), Value & " ")
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                ZIndex: =1
+
+            ErrorMessage6 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =17
+                Y: =DataCardValue6.Y + DataCardValue6.Height
+                ZIndex: =3
+
+            StarVisible6 As label:
+                Align: =Align.Center
+                Height: =DataCardKey6.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =96
+                Y: =DataCardKey6.Y
+                ZIndex: =4
+
+            DataCardValue6 As dropdown:
+                BorderStyle: =BorderStyle.None
+                ChevronBackground: =RGBA(219, 219, 219, 1)
+                ChevronFill: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =45
+                Items: =Distinct(Projects,Title)
+                SelectionColor: =RGBA(0, 0, 0, 1)
+                SelectionFill: =RGBA(219, 219, 219, 1)
+                Width: =480
+                X: =27
+                Y: =54
+                ZIndex: =5
+
+            Rectangle4_7 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =27
+                Y: =40
+                ZIndex: =6
+
+        DN_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="DN"
+            Default: =ThisItem.DN
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"DN")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =86
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "DN")
+            Required: =true
+            Update: =DataCardValue3.Selected.Value
+            Width: =534
+            X: =0
+            Y: =3
+            ZIndex: =6
+
+            ErrorMessage3 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue3.Y + DataCardValue3.Height
+                ZIndex: =3
+
+            StarVisible3 As label:
+                Align: =Align.Center
+                Height: =DataCardKey3.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =182
+                Y: =2
+                ZIndex: =4
+
+            DataCardValue3 As dropdown:
+                BorderStyle: =BorderStyle.None
+                ChevronBackground: =RGBA(219, 219, 219, 1)
+                ChevronFill: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =45
+                Items: =Distinct(Profiles,DN)
+                SelectionColor: =RGBA(0, 0, 0, 1)
+                SelectionFill: =RGBA(219, 219, 219, 1)
+                Width: =280
+                X: =240
+                Y: =41
+                ZIndex: =5
+
+            Rectangle4_5 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =40
+                Y: =27
+                ZIndex: =6
+
+            Icon1_3 As icon.VerticalLine:
+                Color: =RGBA(130, 141, 158, 1)
+                Height: =59
+                Icon: =Icon.VerticalLine
+                Width: =20
+                X: =210
+                Y: =27
+                ZIndex: =7
+
+            Label21_2 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =41
+                Size: =16
+                Text: ="DN"
+                Width: =52
+                X: =170
+                Y: =41
+                ZIndex: =8
+
+            DataCardKey3 As label:
+                Height: =25
+                Text: =""
+                Width: =255
+                X: =264
+                Y: =2
+                ZIndex: =9
+
+        Q3_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="OData__x0051_3"
+            Default: =ThisItem.Q3
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'Master List'],DataSourceInfo.DisplayName,"OData__x0051_3")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@'Master List'], DataSourceInfo.MaxLength, "OData__x0051_3")
+            Required: =true
+            Update: =DataCardValue4.Selected.Value
+            Width: =534
+            X: =1
+            Y: =3
+            ZIndex: =6
+
+            ErrorMessage4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =86
+                ZIndex: =3
+
+            StarVisible4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey4.Height
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                X: =156
+                Y: =13
+                ZIndex: =4
+
+            DataCardValue4 As dropdown:
+                BorderStyle: =BorderStyle.None
+                ChevronBackground: =RGBA(219, 219, 219, 1)
+                ChevronFill: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(219, 219, 219, 1)
+                Height: =45
+                Items: =Distinct(Profiles,Q3)
+                SelectionColor: =RGBA(0, 0, 0, 1)
+                SelectionFill: =RGBA(219, 219, 219, 1)
+                Width: =280
+                X: =212
+                Y: =41
+                ZIndex: =5
+
+            Rectangle4_6 As rectangle:
+                Fill: =RGBA(130, 141, 158, 1)
+                Height: =2
+                Width: =480
+                X: =27
+                Y: =27
+                ZIndex: =6
+
+            Icon1_4 As icon.VerticalLine:
+                Color: =RGBA(130, 141, 158, 1)
+                Height: =59
+                Icon: =Icon.VerticalLine
+                Width: =20
+                X: =184
+                Y: =27
+                ZIndex: =7
+
+            Label21_3 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =41
+                Size: =16
+                Text: ="Q3"
+                Width: =47
+                X: =153
+                Y: =45
+                ZIndex: =8
+
+            DataCardKey4 As label:
+                Height: =12
+                Text: =""
+                X: =226
+                Y: =13
+                ZIndex: =10
+
+    Rectangle2 As rectangle:
+        Fill: =RGBA(9, 33, 98, 1)
+        Height: =600
+        Width: =3
+        X: =817
+        Y: =86
+        ZIndex: =6
+
+    Component1_3 As Component1:
+        CreateRequestScreen: ='Create New Request Screen'
+        Height: =334
+        ManageRequestScreen: ='Manage Request Screen'
+        OverviewRequestScreen: ='OverView Requests Screen'
+        RequestDescriptionScreen: ='Request Description Screen'
+        Y: =60
+        ZIndex: =8
+
+    Rectangle7_2 As rectangle:
+        BorderColor: =RGBA(116, 116, 116, 1)
+        Fill: =RGBA(116, 116, 116, 1)
+        Height: =708
+        Width: =2
+        X: =280
+        Y: =60
+        ZIndex: =9
+
