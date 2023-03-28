@@ -293,7 +293,7 @@
             BorderStyle: =BorderStyle.Solid
             DisplayMode: =DisplayMode.Edit
             Fill: =RGBA(0, 0, 0, 0)
-            Height: =151
+            Height: =197
             Width: =534
             X: =1
             Y: =4
@@ -305,7 +305,10 @@
                 FontWeight: =FontWeight.Bold
                 HoverFill: =RGBA(175, 191, 224, 1)
                 OnSelect: |+
-                    =If(NewRequestForm.Valid,SubmitForm(NewRequestForm); Notify("You Successfully Submited the details!",NotificationType.Success);ResetForm(NewRequestForm), Notify("Please enter all fields!",NotificationType.Error));
+                    =If(NewRequestForm.Valid,SubmitForm(NewRequestForm);
+                     Notify("You Successfully Submited the details!",NotificationType.Success);
+                     ResetForm(NewRequestForm), 
+                     Notify("Please enter all fields!",NotificationType.Error));
                     
                 Size: =18
                 Text: ="Save"
